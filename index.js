@@ -31,6 +31,8 @@ module.exports = Eris => {
 	require("./lib/Role/higherThan.js")(Eris);
 
 	// User additions
-	require("./lib/Member/createMessage.js")(Eris);
-	require("./lib/Member/sendMessage.js")(Eris);
+	require("./lib/User/createMessage.js")(Eris);
+	require("./lib/User/sendMessage.js")(Eris);
+
+	return Eris;
 };
