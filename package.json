@@ -1,6 +1,6 @@
 {
   "name": "eris-additions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "extend prototypes for eris",
   "main": "index.js",
   "scripts": {
