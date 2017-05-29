@@ -1,11 +1,7 @@
 # eris-additions
 extend prototypes for eris
 
-how to use:
-1) install eris and eris-additions
-2) use require("eris-additions")(Eris)
-
-examples of importing:
+Usage:
 ```
 const Eris = require("eris");
 require("eris-additions")(Eris)
@@ -15,3 +11,227 @@ require("eris-additions")(Eris)
 const Eris = require("eris-additions")(require("eris"))
 ```
 
+## Channel Additions
+
+* awaitMessages(filter, options) - wait for messages
+
+Filter: function(message) which returns a true or false value
+
+Options: `{
+  maxMatches (required): number | amount of messages to collect,
+  time: milliseconds | the time until the collector times out
+}`
+
+Returns: A promise that is resolved with an array of collected messages
+
+Example (async):
+```
+let responses = await message.channel.awaitMessages(m => m.content === "yes", { time: maxMatches: 1, 10000 });
+if(responses.length) message.channel.createMessage("You said yes :)");
+else message.channel.createMessage("You didn't say yes :(");
+```
+
+* createCode(code, language) / sendCode(code, language) - send a codeblock
+
+Returns: A promise that is resolved with the sent message or rejected with the error
+
+Same as Client.createCode, but no need for the channelID
+
+Example:
+```
+message.channel.createCode("console.log('hi')", "js");
+```
+
+* createEmbed(embed) / sendEmbed(embed) - send an embed
+
+Returns: A promise that is resolved with the sent message or rejected with the erorr
+
+Same as Client.createEmbed, but no need for the channelID
+
+Example:
+```
+message.channel.createEmbed({ title: "hello", description: "test embed" });
+```
+
+* sendMessage(content, file) - send a message
+
+Returns: A promise that is resolved with the sent message or rejected with the error
+
+Same as Eris' Channel.createMessage()
+
+Example:
+```
+message.channel.sendMessage("hi");
+```
+
+## Client Additions
+
+* createCode(channelID, code, language) - send a code block
+
+channelID: the id of the channel to send the message in
+
+Code: the content to send inside the code block
+
+Language (optional): the language of the code block
+
+Returns: A promise that is resolved with the sent message or rejected with the error
+
+Example:
+```
+client.createCode(message.channel.id, "console.log('hi')", "js");
+```
+
+* createEmbed(channelID, embed) - sends an embed
+
+channelID: the id of the channel to send the message in
+
+embed: embed object
+
+Returns: A promise that is resolved with the sent message or rejected with the error
+
+Example:
+```
+client.createEmbed(message.channel.id, { title: "hello", description: "test embed" });
+```
+
+## GuildChannel Additions
+
+* memberHasPermission(memberID, permission) - if a member has a permission in a channel
+
+memberID: the id of the member or a member object
+
+permission: string of Eris permission name
+
+Returns: Boolean of whether or not the member has the permission
+
+Example:
+```
+if(message.channel.memberHasPermission(bot.user.id, "sendMessages")) message.channel.createMessage("Pong!");
+else message.member.createMessage("I cannot send messages in that channel, please double check permissions");
+```
+
+## Member Additions
+
+* bannable - if a member is bannable by the bot
+
+Example:
+```
+let memberToBan = message.guild.members.get(message.content);
+if(memberToBan.bannable) {
+  memberToBan.ban();
+  message.channel.createMessage("I banned the member");
+} else {
+  message.channel.createMessage("I can't ban that member, please double check permissions");
+}
+```
+
+* hasPermission(permission) - if the member has a permission in the guild
+
+permission: string of Eris permission name
+
+Returns: Boolean of whether or not the member has the permission
+
+Example:
+```
+if(message.member.hasPermission("banMembers")) message.channel.createMessage("You can ban members");
+else message.member.createMessage("You can't ban membres");
+```
+
+* hasRole(roleID) - if the member has a role
+
+roleID: a role object or role ID
+
+Returns: Boolean of whether or not the member has the role
+
+Example:
+```
+let mutedRole = message.guild.roles.find(role => role.name === "Muted");
+if(message.member.hasRole(mutedRole)) message.channel.createMessage("You are muted");
+else message.channel.createMessage("You are not muted");
+```
+
+* highestRole - the highest role a member has
+
+Example:
+```
+message.channel.createMessage(`Your highest role is: ${message.member.highestRole.name}`);
+```
+
+* kickable - if a member is kickable by the bot
+
+Example:
+```
+let memberToBan = message.guild.members.get(message.content);
+if(memberToBan.bannable) {
+  memberToBan.ban();
+  message.channel.createMessage("I banned the member");
+} else {
+  message.channel.createMessage("I can't ban that member, please double check permissions");
+}
+```
+
+* punishable(member2) - logic behind kickable / bannable, may be useful for other things
+
+member2: a member object
+
+Returns: Boolean of whether or not member2 can punish the member
+
+Example:
+```
+let memberToWarn = message.guild.members.get(message.content);
+if(memberToBan.punishable(message.member)) {
+  warnings[memberToBan.id] += 1;
+  message.channel.createMessage("The member has been warned");
+} else {
+  message.channel.createMessage("You dont have permission to warn that member");
+}
+```
+
+* roleObjects - array of roles a member has, but mapped to their role objects, not their ids
+
+Example:
+```
+message.channel.createMessage("Your roles: " + message.member.roleObjects.map(role => role.name);
+```
+
+## Message Additions
+
+* guild - guild of the message
+
+Example:
+```
+message.channel.createMessage(`You are talking in ${message.guild.name}`);
+```
+
+## Role Additions
+
+* addable - if the bot can add the role to a member
+
+Example:
+```
+if(!role.addable) message.channel.createMessage("I don't have permission to add that role to anyone, is it's position higher than mine?");
+```
+
+* higherThan(role2) - check if the role's position is higher than a different role's position
+
+role2: role object
+
+Returns: Boolean of whether or not the role is higher than role2's position
+
+Example:
+```
+if(member.highestRole.higherThan(otherMember.highestRole)) channel.createMessage("You have a higher role than " + otherMember.user.username");
+```
+
+## User Additions
+
+* createMessage(content, file) / sendMessage(content, file) - send the user a direct message
+
+Returns: A promise resolved with the sent message or rejected with the error of sending the message or getting the DM channel
+
+Same as Eris' Channel.createMessage but called on a DM channel for you
+
+Example:
+```
+message.member.createMessage("Hello!");
+```
