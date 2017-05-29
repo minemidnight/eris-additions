@@ -29,4 +29,8 @@ module.exports = Eris => {
 	// Role additions
 	require("./lib/Role/addable.js")(Eris);
 	require("./lib/Role/higherThan.js")(Eris);
+
+	// User additions
+	require("./lib/Member/createMessage.js")(Eris);
+	require("./lib/Member/sendMessage.js")(Eris);
 };
