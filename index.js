@@ -1,4 +1,4 @@
-module.exports = Eris => {
+module.exports = function(Eris) {
 	// Channel additions
 	require("./lib/Channel/awaitMessages.js")(Eris);
 	require("./lib/Channel/createCode.js")(Eris);
