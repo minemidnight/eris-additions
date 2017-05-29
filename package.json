@@ -1,0 +1,21 @@
+{
+  "name": "eris-additions",
+  "description": "extend prototypes for eris",
+  "main": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minemidnight/eris-additions.git"
+  },
+  "author": "minemidnight",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/minemidnight/eris-additions/issues"
+  },
+  "homepage": "https://github.com/minemidnight/eris-additions#readme",
+  "dependencies": {
+    "eris": "^0.7.0"
+  }
+}
