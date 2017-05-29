@@ -112,7 +112,7 @@ else message.member.createMessage("I cannot send messages in that channel, pleas
 
 ## Member Additions
 
-* bannable - if a member is bannable by the bot
+* bannable - if the member is bannable by the bot
 
 Example:
 ```
@@ -123,6 +123,17 @@ if(memberToBan.bannable) {
 } else {
   message.channel.createMessage("I can't ban that member, please double check permissions");
 }
+```
+
+* createMessage - send the member a message
+
+Returns: A promise that is resolved with the sent message or rejected with the error
+
+Same as User.createMessage()
+
+Example:
+```
+message.member.createMessage("hi");
 ```
 
 * hasPermission(permission) - if the member has a permission in the guild
@@ -194,6 +205,17 @@ Example:
 message.channel.createMessage("Your roles: " + message.member.roleObjects.map(role => role.name);
 ```
 
+* sendMessage - send the member a message
+
+Returns: A promise that is resolved with the sent message or rejected with the error
+
+Same as User.createMessage()
+
+Example:
+```
+message.member.sendMessage("hi");
+```
+
 ## Message Additions
 
 * guild - guild of the message
@@ -233,5 +255,5 @@ Same as Eris' Channel.createMessage but called on a DM channel for you
 
 Example:
 ```
-message.member.createMessage("Hello!");
+message.user.createMessage("Hello!");
 ```
