@@ -23,7 +23,7 @@ module.exports = (Eris, options = {}) => {
 	if(isEnabled("Eris.Embed", options)) require("./lib/Eris/Embed.js")(Eris);
 
 	// GuildChannel additions
-	if(isEnabled("Channel.memberHasPermission", options)) require("./lib/GuildChannel/memberHasPermission.js")(Eris);
+	if(isEnabled("GuildChannel.memberHasPermission", options)) require("./lib/GuildChannel/memberHasPermission.js")(Eris);
 
 	// Member additions
 	if(isEnabled("Member.bannable", options)) require("./lib/Member/bannable.js")(Eris);

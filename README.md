@@ -11,7 +11,7 @@ only takes either enabled or disabled, if both are provided, it uses disabled
 Examples of adding `eris-additions` to your code:
 ```
 const Eris = require("eris");
-require("eris-additions")(Eris, { disabled: ["Channel.sendMessage", "Channel.sendCode", "Eris.embedBuilder"]})
+require("eris-additions")(Eris, { disabled: ["Channel.sendMessage", "Channel.sendCode", "Eris.Embed"] })
 ```
 or
 ```
