@@ -1,6 +1,6 @@
 function isEnabled(option, options) {
 	if(!options.enabled && !options.disabled) return true;
-	else if(options.disabled && !~options.enabled.indexOf(option)) return true;
+	else if(options.disabled && !~options.disabled.indexOf(option)) return true;
 	else if(options.enabled && ~options.enabled.indexOf(option)) return true;
 	else return false;
 }
@@ -19,8 +19,8 @@ module.exports = (Eris, options = {}) => {
 	if(isEnabled("Client.createEmbed", options)) require("./lib/Client/createEmbed.js")(Eris);
 
 	// Eris additions
-	if(isEnabled("Eris.codeBlock", options)) require("./lib/Eris/codeBlock.js")(Eris);
-	if(isEnabled("Eris.embedBuilder", options)) require("./lib/Eris/embedBuilder.js")(Eris);
+	if(isEnabled("Eris.CodeBlock", options)) require("./lib/Eris/CodeBlock.js")(Eris);
+	if(isEnabled("Eris.Embed", options)) require("./lib/Eris/Embed.js")(Eris);
 
 	// GuildChannel additions
 	if(isEnabled("Channel.memberHasPermission", options)) require("./lib/GuildChannel/memberHasPermission.js")(Eris);

@@ -105,7 +105,7 @@ client.createEmbed(message.channel.id, { title: "hello", description: "test embe
 
 ## Eris Additions
 
-* new Eris.codeBlock(code, language) - create a codeblock
+* new Eris.CodeBlock(code, language) - create a codeblock
 
 Methods:
 * content(content) - set content
@@ -113,10 +113,10 @@ Methods:
 
 Example:
 ```
-message.member.createMessage("look at this cool code:" + new Eris.codeBlock().content("console.log('hi')").language("js"));
+message.member.createMessage("look at this cool code:" + new Eris.CodeBlock().content("console.log('hi')").language("js"));
 ```
 
-* new Eris.embedBuilder({ embed }) - create a embed
+* new Eris.Embed({ embed }) - create a embed
 
 Methods:
 * author(name, icon, url) - set embed author
@@ -133,7 +133,7 @@ Methods:
 
 Example:
 ```
-message.channel.createEmbed(new Eris.embedBuilder().title("hello").description("test embed"));
+message.channel.createEmbed(new Eris.Embed().title("hello").description("test embed"));
 ```
 
 ## GuildChannel Additions
