@@ -1,15 +1,24 @@
 # eris-additions
 extend prototypes for eris
 
-Usage:
+require("eris-additions")(eris, options)
+eris: the object returned when requiring eris
+options (object):
+* enabled: array of `Object.Method` stating which prototypes to enable
+* disabled: array of `Object.Method` stating which prototypes to disable
+only takes either enabled or disabled, if both are provided, it uses disabled
+
+Examples of adding `eris-additions` to your code:
 ```
 const Eris = require("eris");
-require("eris-additions")(Eris)
+require("eris-additions")(Eris, { disabled: ["Channel.sendMessage", "Channel.sendCode", "Eris.embedBuilder"]})
 ```
-
+or
 ```
 const Eris = require("eris-additions")(require("eris"))
 ```
+
+Note: You only need to require eris-additions once, even if you require eris in more than one file.
 
 ## Channel Additions
 
@@ -94,6 +103,39 @@ Example:
 client.createEmbed(message.channel.id, { title: "hello", description: "test embed" });
 ```
 
+## Eris Additions
+
+* new Eris.codeBlock(code, language) - create a codeblock
+
+Methods:
+* content(content) - set content
+* language(lang) - set language
+
+Example:
+```
+message.member.createMessage("look at this cool code:" + new Eris.codeBlock().content("console.log('hi')").language("js"));
+```
+
+* new Eris.embedBuilder({ embed }) - create a embed
+
+Methods:
+* author(name, icon, url) - set embed author
+* color(HEX color) - set embed color
+* description(desc) - set embed description
+* field(name, value, inline) - add embed field
+* file(file) - set embed file
+* footer(text, icon) - set embed footer
+* image(url) - set embed image
+* timestamp(date) - set embed date
+* title(title) - set embed title
+* thumbnail(url) - set embed thumbnail
+* url(url) - set embed url
+
+Example:
+```
+message.channel.createEmbed(new Eris.embedBuilder().title("hello").description("test embed"));
+```
+
 ## GuildChannel Additions
 
 * memberHasPermission(memberID, permission) - if a member has a permission in a channel
@@ -125,7 +167,7 @@ if(memberToBan.bannable) {
 }
 ```
 
-* createMessage - send the member a message
+* createMessage(content, file) - send the member a message
 
 Returns: A promise that is resolved with the sent message or rejected with the error
 
@@ -205,7 +247,7 @@ Example:
 message.channel.createMessage("Your roles: " + message.member.roleObjects.map(role => role.name);
 ```
 
-* sendMessage - send the member a message
+* sendMessage(content, file) - send the member a message
 
 Returns: A promise that is resolved with the sent message or rejected with the error
 

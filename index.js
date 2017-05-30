@@ -1,38 +1,49 @@
-module.exports = Eris => {
+function isEnabled(option, options) {
+	if(!options.enabled && !options.disabled) return true;
+	else if(options.disabled && !~options.enabled.indexOf(option)) return true;
+	else if(options.enabled && ~options.enabled.indexOf(option)) return true;
+	else return false;
+}
+
+module.exports = (Eris, options = {}) => {
 	// Channel additions
-	require("./lib/Channel/awaitMessages.js")(Eris);
-	require("./lib/Channel/createCode.js")(Eris);
-	require("./lib/Channel/createEmbed.js")(Eris);
-	require("./lib/Channel/sendCode.js")(Eris);
-	require("./lib/Channel/sendEmbed.js")(Eris);
-	require("./lib/Channel/sendMessage.js")(Eris);
+	if(isEnabled("Channel.awaitMessages", options)) require("./lib/Channel/awaitMessages.js")(Eris);
+	if(isEnabled("Channel.createCode", options)) require("./lib/Channel/createCode.js")(Eris);
+	if(isEnabled("Channel.createEmbed", options)) require("./lib/Channel/createEmbed.js")(Eris);
+	if(isEnabled("Channel.sendCode", options)) require("./lib/Channel/sendCode.js")(Eris);
+	if(isEnabled("Channel.sendEmbed", options)) require("./lib/Channel/sendEmbed.js")(Eris);
+	if(isEnabled("Channel.sendMessage", options)) require("./lib/Channel/sendMessage.js")(Eris);
 
 	// Client additions
-	require("./lib/Client/createCode.js")(Eris);
-	require("./lib/Client/createEmbed.js")(Eris);
+	if(isEnabled("Client.createCode", options)) require("./lib/Client/createCode.js")(Eris);
+	if(isEnabled("Client.createEmbed", options)) require("./lib/Client/createEmbed.js")(Eris);
+
+	// Eris additions
+	if(isEnabled("Eris.codeBlock", options)) require("./lib/Eris/codeBlock.js")(Eris);
+	if(isEnabled("Eris.embedBuilder", options)) require("./lib/Eris/embedBuilder.js")(Eris);
 
 	// GuildChannel additions
-	require("./lib/GuildChannel/memberHasPermission.js")(Eris);
+	if(isEnabled("Channel.memberHasPermission", options)) require("./lib/GuildChannel/memberHasPermission.js")(Eris);
 
 	// Member additions
-	require("./lib/Member/bannable.js")(Eris);
-	require("./lib/Member/hasPermission.js")(Eris);
-	require("./lib/Member/hasRole.js")(Eris);
-	require("./lib/Member/highestRole.js")(Eris);
-	require("./lib/Member/kickable.js")(Eris);
-	require("./lib/Member/punishable.js")(Eris);
-	require("./lib/Member/roleObjects.js")(Eris);
+	if(isEnabled("Member.bannable", options)) require("./lib/Member/bannable.js")(Eris);
+	if(isEnabled("Member.hasPermission", options)) require("./lib/Member/hasPermission.js")(Eris);
+	if(isEnabled("Member.hasRole", options)) require("./lib/Member/hasRole.js")(Eris);
+	if(isEnabled("Member.highestRole", options)) require("./lib/Member/highestRole.js")(Eris);
+	if(isEnabled("Member.kickable", options)) require("./lib/Member/kickable.js")(Eris);
+	if(isEnabled("Member.punishable", options)) require("./lib/Member/punishable.js")(Eris);
+	if(isEnabled("Member.roleObjects", options)) require("./lib/Member/roleObjects.js")(Eris);
 
 	// Message additions
-	require("./lib/Message/guild.js")(Eris);
+	if(isEnabled("Message.guild", options)) require("./lib/Message/guild.js")(Eris);
 
 	// Role additions
-	require("./lib/Role/addable.js")(Eris);
-	require("./lib/Role/higherThan.js")(Eris);
+	if(isEnabled("Role.addable", options)) require("./lib/Role/addable.js")(Eris);
+	if(isEnabled("Role.higherThan", options)) require("./lib/Role/higherThan.js")(Eris);
 
 	// User additions
-	require("./lib/User/createMessage.js")(Eris);
-	require("./lib/User/sendMessage.js")(Eris);
+	if(isEnabled("User.createMessage", options)) require("./lib/User/createMessage.js")(Eris);
+	if(isEnabled("User.sendMessage", options)) require("./lib/User/sendMessage.js")(Eris);
 
 	return Eris;
 };
