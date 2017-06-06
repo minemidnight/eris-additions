@@ -6,6 +6,7 @@ eris: the object returned when requiring eris
 options (object):
 * enabled: array of `Object.Method` stating which prototypes to enable
 * disabled: array of `Object.Method` stating which prototypes to disable
+
 only takes either enabled or disabled, if both are provided, it uses disabled
 
 Examples of adding `eris-additions` to your code:
