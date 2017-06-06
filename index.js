@@ -6,7 +6,10 @@ function isEnabled(mod, options) {
 }
 
 function addAddition(addition, Eris, options = {}) {
+	console.log("adding", addition);
 	if(!isEnabled(addition, options)) return;
+	console.log("enabled");
+	console.log(addition.replace(".", "/"));
 
 	let mod = require(`./lib/${addition.replace(".", "/")}`);
 	mod(Eris);
