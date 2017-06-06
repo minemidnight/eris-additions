@@ -14,10 +14,11 @@ function addAddition(addition, Eris, options = {}) {
 }
 
 const fs = require("fs");
+const libdir = require("path").resolve("lib");
 module.exports = (Eris, options = {}) => {
-	let structs = fs.readdirSync("./lib/");
+	let structs = fs.readdirSync(libdir);
 	structs.forEach(struct => {
-		let additions = fs.readdirSync(`./lib/${struct}/`);
+		let additions = fs.readdirSync(`${libdir}/${struct}/`);
 		additions.forEach(addition => addAddition(`${struct}.${addition}`, Eris, options));
 	});
 
