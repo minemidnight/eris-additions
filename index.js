@@ -17,7 +17,7 @@ function addAddition(addition, Eris, options = {}) {
 }
 
 const fs = require("fs");
-const libdir = require("path").resolve("lib");
+const libdir = require("path").resolve("./lib");
 module.exports = (Eris, options = {}) => {
 	let structs = fs.readdirSync(libdir);
 	structs.forEach(struct => {
