@@ -11,7 +11,7 @@ function addAddition(addition, Eris, options = {}) {
 
 	let mod = require(`./lib/${addition.replace(".", "/")}`);
 	if(!~loadedAdditions.indexOf(addition)) (mod(Eris), loadedAdditions.push(addition));
-	if(mod.deps) mod.deps.forEach(dep => addAddition(dep, Eris));
+	if(mod.deps) mod.deps.forEach(dep => addAddition(`${dep}.js`, Eris));
 }
 
 const fs = require("fs");
