@@ -11,7 +11,7 @@ function addAddition(addition, Eris, options = {}) {
 
 	let mod = require(`./lib/${addition.replace(".", "/")}`);
 	if(!~loadedAdditions.indexOf(addition)) (mod(Eris), loadedAdditions.push(addition));
-	if(mod.deps) mod.deps.forEach(dep => addAddition(`${dep}.js`, Eris));
+	if(mod.deps) mod.deps.forEach(dep => addAddition(dep, Eris));
 }
 
 const fs = require("fs");
@@ -20,6 +20,7 @@ module.exports = (Eris, options = {}) => {
 	let structs = fs.readdirSync(libdir);
 	structs.forEach(struct => {
 		let additions = fs.readdirSync(`${libdir}/${struct}/`);
+		additions = additions.map(script => script.substring(0, script.length - 3));
 		additions.forEach(addition => addAddition(`${struct}.${addition}`, Eris, options));
 	});
 
