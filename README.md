@@ -188,7 +188,7 @@ Returns: Boolean of whether or not the member has the permission
 Example:
 ```
 if(message.member.hasPermission("banMembers")) message.channel.createMessage("You can ban members");
-else message.member.createMessage("You can't ban membres");
+else message.member.createMessage("You can't ban members");
 ```
 
 * hasRole(roleID) - if the member has a role
