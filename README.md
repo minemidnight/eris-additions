@@ -54,7 +54,7 @@ message.channel.createCode("console.log('hi')", "js");
 
 * createEmbed(embed) / sendEmbed(embed) - send an embed
 
-Returns: A promise that is resolved with the sent message or rejected with the erorr
+Returns: A promise that is resolved with the sent message or rejected with the error
 
 Same as Client.createEmbed, but no need for the channelID
 
