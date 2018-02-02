@@ -36,7 +36,7 @@ Returns: A promise that is resolved with an array of collected messages
 
 Example (async):
 ```js
-let responses = await message.channel.awaitMessages(m => m.content === "yes", { time: maxMatches: 1, 10000 });
+let responses = await message.channel.awaitMessages(m => m.content === "yes", { time: 10000, maxMatches: 1 });
 if(responses.length) message.channel.createMessage("You said yes :)");
 else message.channel.createMessage("You didn't say yes :(");
 ```
