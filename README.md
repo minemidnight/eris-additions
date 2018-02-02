@@ -285,7 +285,7 @@ Returns: Boolean of whether or not the role is higher than role2's position
 
 Example:
 ```js
-if(member.highestRole.higherThan(otherMember.highestRole)) channel.createMessage("You have a higher role than " + otherMember.user.username");
+if(member.highestRole.higherThan(otherMember.highestRole)) channel.createMessage("You have a higher role than " + otherMember.user.username);
 ```
 
 ## User Additions
