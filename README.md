@@ -10,12 +10,12 @@ options (object):
 only takes either enabled or disabled, if both are provided, it uses disabled
 
 Examples of adding `eris-additions` to your code:
-```
+```js
 const Eris = require("eris");
 require("eris-additions")(Eris, { disabled: ["Channel.sendMessage", "Channel.sendCode", "Eris.Embed"] })
 ```
 or
-```
+```js
 const Eris = require("eris-additions")(require("eris"))
 ```
 
@@ -35,8 +35,8 @@ Options: `{
 Returns: A promise that is resolved with an array of collected messages
 
 Example (async):
-```
-let responses = await message.channel.awaitMessages(m => m.content === "yes", { time: maxMatches: 1, 10000 });
+```js
+let responses = await message.channel.awaitMessages(m => m.content === "yes", { time: 10000, maxMatches: 1 });
 if(responses.length) message.channel.createMessage("You said yes :)");
 else message.channel.createMessage("You didn't say yes :(");
 ```
@@ -48,7 +48,7 @@ Returns: A promise that is resolved with the sent message or rejected with the e
 Same as Client.createCode, but no need for the channelID
 
 Example:
-```
+```js
 message.channel.createCode("console.log('hi')", "js");
 ```
 
@@ -59,7 +59,7 @@ Returns: A promise that is resolved with the sent message or rejected with the e
 Same as Client.createEmbed, but no need for the channelID
 
 Example:
-```
+```js
 message.channel.createEmbed({ title: "hello", description: "test embed" });
 ```
 
@@ -70,7 +70,7 @@ Returns: A promise that is resolved with the sent message or rejected with the e
 Same as Eris' Channel.createMessage()
 
 Example:
-```
+```js
 message.channel.sendMessage("hi");
 ```
 
@@ -87,7 +87,7 @@ Language (optional): the language of the code block
 Returns: A promise that is resolved with the sent message or rejected with the error
 
 Example:
-```
+```js
 client.createCode(message.channel.id, "console.log('hi')", "js");
 ```
 
@@ -100,7 +100,7 @@ embed: embed object
 Returns: A promise that is resolved with the sent message or rejected with the error
 
 Example:
-```
+```js
 client.createEmbed(message.channel.id, { title: "hello", description: "test embed" });
 ```
 
@@ -113,7 +113,7 @@ Methods:
 * language(lang) - set language
 
 Example:
-```
+```js
 message.member.createMessage("look at this cool code:" + new Eris.CodeBlock().content("console.log('hi')").language("js"));
 ```
 
@@ -133,7 +133,7 @@ Methods:
 * url(url) - set embed url
 
 Example:
-```
+```js
 message.channel.createEmbed(new Eris.Embed().title("hello").description("test embed"));
 ```
 
@@ -148,7 +148,7 @@ permission: string of Eris permission name
 Returns: Boolean of whether or not the member has the permission
 
 Example:
-```
+```js
 if(message.channel.memberHasPermission(bot.user.id, "sendMessages")) message.channel.createMessage("Pong!");
 else message.member.createMessage("I cannot send messages in that channel, please double check permissions");
 ```
@@ -158,7 +158,7 @@ else message.member.createMessage("I cannot send messages in that channel, pleas
 * bannable - if the member is bannable by the bot
 
 Example:
-```
+```js
 let memberToBan = message.guild.members.get(message.content);
 if(memberToBan.bannable) {
   memberToBan.ban();
@@ -175,7 +175,7 @@ Returns: A promise that is resolved with the sent message or rejected with the e
 Same as User.createMessage()
 
 Example:
-```
+```js
 message.member.createMessage("hi");
 ```
 
@@ -186,7 +186,7 @@ permission: string of Eris permission name
 Returns: Boolean of whether or not the member has the permission
 
 Example:
-```
+```js
 if(message.member.hasPermission("banMembers")) message.channel.createMessage("You can ban members");
 else message.member.createMessage("You can't ban members");
 ```
@@ -198,7 +198,7 @@ roleID: a role object or role ID
 Returns: Boolean of whether or not the member has the role
 
 Example:
-```
+```js
 let mutedRole = message.guild.roles.find(role => role.name === "Muted");
 if(message.member.hasRole(mutedRole)) message.channel.createMessage("You are muted");
 else message.channel.createMessage("You are not muted");
@@ -207,14 +207,14 @@ else message.channel.createMessage("You are not muted");
 * highestRole - the highest role a member has
 
 Example:
-```
+```js
 message.channel.createMessage(`Your highest role is: ${message.member.highestRole.name}`);
 ```
 
 * kickable - if a member is kickable by the bot
 
 Example:
-```
+```js
 let memberToBan = message.guild.members.get(message.content);
 if(memberToBan.bannable) {
   memberToBan.ban();
@@ -231,7 +231,7 @@ member2: a member object
 Returns: Boolean of whether or not member2 can punish the member
 
 Example:
-```
+```js
 let memberToWarn = message.guild.members.get(message.content);
 if(memberToBan.punishable(message.member)) {
   warnings[memberToBan.id] += 1;
@@ -244,7 +244,7 @@ if(memberToBan.punishable(message.member)) {
 * roleObjects - array of roles a member has, but mapped to their role objects, not their ids
 
 Example:
-```
+```js
 message.channel.createMessage("Your roles: " + message.member.roleObjects.map(role => role.name);
 ```
 
@@ -255,7 +255,7 @@ Returns: A promise that is resolved with the sent message or rejected with the e
 Same as User.createMessage()
 
 Example:
-```
+```js
 message.member.sendMessage("hi");
 ```
 
@@ -264,7 +264,7 @@ message.member.sendMessage("hi");
 * guild - guild of the message
 
 Example:
-```
+```js
 message.channel.createMessage(`You are talking in ${message.guild.name}`);
 ```
 
@@ -273,7 +273,7 @@ message.channel.createMessage(`You are talking in ${message.guild.name}`);
 * addable - if the bot can add the role to a member
 
 Example:
-```
+```js
 if(!role.addable) message.channel.createMessage("I don't have permission to add that role to anyone, is it's position higher than mine?");
 ```
 
@@ -284,8 +284,8 @@ role2: role object
 Returns: Boolean of whether or not the role is higher than role2's position
 
 Example:
-```
-if(member.highestRole.higherThan(otherMember.highestRole)) channel.createMessage("You have a higher role than " + otherMember.user.username");
+```js
+if(member.highestRole.higherThan(otherMember.highestRole)) channel.createMessage("You have a higher role than " + otherMember.user.username);
 ```
 
 ## User Additions
@@ -297,6 +297,6 @@ Returns: A promise resolved with the sent message or rejected with the error of 
 Same as Eris' Channel.createMessage but called on a DM channel for you
 
 Example:
-```
+```js
 message.user.createMessage("Hello!");
 ```
