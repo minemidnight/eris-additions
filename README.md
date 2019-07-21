@@ -211,6 +211,13 @@ Example:
 message.channel.createMessage(`Your highest role is: ${message.member.highestRole.name}`);
 ```
 
+* color - the highest color a member has
+
+Example:
+```js
+message.channel.createMessage(`Your color: ${message.member.color}`);
+```
+
 * kickable - if a member is kickable by the bot
 
 Example:
@@ -298,5 +305,5 @@ Same as Eris' Channel.createMessage but called on a DM channel for you
 
 Example:
 ```js
-message.user.createMessage("Hello!");
+message.author.createMessage("Hello!");
 ```
