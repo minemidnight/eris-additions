@@ -307,3 +307,14 @@ Example:
 ```js
 message.author.createMessage("Hello!");
 ```
+
+## Guild Additions 
+
+* findMembers(query) - get members based on the specified query.
+
+Returns: A collection of members that match the query based on their tag/discriminator/nickname/etc.
+
+Example:
+```js
+msg.guild.findMembers("2513");
+```
