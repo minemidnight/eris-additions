@@ -179,6 +179,13 @@ Example:
 message.member.createMessage("hi");
 ```
 
+* effectiveName - the member's display name 
+
+Example:
+```js 
+message.channel.createMessage(`Your effective name is: ${mesage.member.effectiveName}`);
+```
+
 * hasPermission(permission) - if the member has a permission in the guild
 
 permission: string of Eris permission name
