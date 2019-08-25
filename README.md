@@ -314,3 +314,17 @@ Example:
 ```js
 message.author.createMessage("Hello!");
 ```
+
+## Guild Additions 
+
+* findMembers(query) - get a list of members who match the query
+
+query: a String that you wish to lookup against a guild's members.
+
+Returns: a Collection<Member> of members that match the query.
+
+Example:
+```js
+const members = message.guild.findMembers("Attribute");
+message.channel.createMessage(`There are ${members.length} members that match the query `Attribute`: ${members.map(m => m.effectiveName).join(", ")}`);
+```
