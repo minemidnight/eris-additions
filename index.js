@@ -10,7 +10,11 @@ function addAddition(addition, Eris, options = {}) {
 	if(!isEnabled(addition, options)) return;
 
 	let mod = require(`./lib/${addition.replace(".", "/")}`);
-	if(!~loadedAdditions.indexOf(addition)) (mod(Eris), loadedAdditions.push(addition));
+	if(!~loadedAdditions.indexOf(addition)) {
+		mod(Eris);
+		loadedAdditions.push(addition);
+	}
+
 	if(mod.deps) mod.deps.forEach(dep => addAddition(dep, Eris));
 }
 
