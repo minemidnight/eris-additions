@@ -328,3 +328,10 @@ Example:
 const members = message.guild.findMembers("Attribute");
 message.channel.createMessage(`There are ${members.length} members that match the query `Attribute`: ${members.map(m => m.effectiveName).join(", ")}`);
 ```
+
+* me - return the Member object of the bot in this guild.
+
+Example:
+```js
+message.channel.createMessage(`My highest role is: ${message.guild.me.highestRole.name}!`);
+```
