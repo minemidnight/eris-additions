@@ -230,11 +230,11 @@ message.channel.createMessage(`Your color: ${message.member.color}`);
 Example:
 ```js
 let memberToBan = message.guild.members.get(message.content);
-if(memberToBan.bannable) {
-  memberToBan.ban();
-  message.channel.createMessage("I banned the member");
+if(memberToBan.kickable) {
+  memberToBan.kick();
+  message.channel.createMessage("I kicked the member");
 } else {
-  message.channel.createMessage("I can't ban that member, please double check permissions");
+  message.channel.createMessage("I can't kick that member, please double check permissions");
 }
 ```
 
