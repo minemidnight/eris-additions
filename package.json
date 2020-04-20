@@ -1,9 +1,9 @@
 {
   "name": "eris-additions",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "extend prototypes for eris",
   "main": "index.js",
-	"engines": {
+  "engines": {
     "node": ">=4.0.0"
   },
   "scripts": {
@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/minemidnight/eris-additions#readme",
   "dependencies": {
-    "eris": "^0.7.0"
+    "eris": "^0.12.0"
   }
 }
