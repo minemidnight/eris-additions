@@ -315,6 +315,15 @@ Example:
 message.author.createMessage("Hello!");
 ```
 
+* tag - get the user's tag (`username#discriminator`)
+
+Returns: a string combining the user's username and discriminator. If they have migrated to the new username system, this will just be their username.
+
+Example:
+```js
+message.author.tag // attributeerror, or AttributeError#2513 on the legacy system
+```
+
 ## Guild Additions 
 
 * findMembers(query) - get a list of members who match the query
